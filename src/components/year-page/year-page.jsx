@@ -14,7 +14,7 @@ const YearPage = (props) => {
       height={100}
       width={100}
       timeout={3000}
-      style={{marginLeft: `48%`, marginTop: `10%`}}
+      style={{marginLeft: `calc(50% - 50px)`, marginTop: `10%`}}
     />;
   }
 
