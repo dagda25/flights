@@ -5,9 +5,10 @@ import App from "./components/app/app";
 import {fetchData} from "./store/api-actions";
 import store from "./store/store";
 
+
 store.dispatch(fetchData())
 .then(
-	ReactDOM.render(
+    ReactDOM.render(
         <Provider store={store}>
           <App/>
         </Provider>,

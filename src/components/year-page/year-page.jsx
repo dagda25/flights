@@ -1,13 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import Loader from "react-loader-spinner";
 
 
 const YearPage = (props) => {
   const {data, year, month} = props;
 
   if (!data || !data.length) {
-    return <h1>loading</h1>;
+    return <Loader
+      type="Circles"
+      color="#00BFFF"
+      height={100}
+      width={100}
+      timeout={3000}
+      style={{marginLeft: `48%`, marginTop: `10%`}}
+    />;
   }
 
   const [localData, setLocalData] = React.useState(data);
@@ -29,8 +37,8 @@ const YearPage = (props) => {
           <td>{flight.timeBlock}</td>
           <td>{flight.timeNight}</td>
           <td>{flight.timeBiologicalNight}</td>
-          <td>{flight.timeWork}</td>          
-          <td>{flight.type ? "План" : "Факт"}</td>
+          <td>{flight.timeWork}</td>
+          <td>{flight.type ? `План` : `Факт`}</td>
           <td>{flight.takeoff.name}</td>
           <td>{flight.landing.name}</td>
         </tr>
