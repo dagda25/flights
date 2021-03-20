@@ -115,7 +115,7 @@ const YearPage = (props) => {
         </tbody>
       </table>
       <p>Всего рейсов: {flightsCount}</p>
-      <form>
+      <form onSubmit={(e) => e.preventDefault()}>
         <input type="text" className="table-search" placeholder="Введите номер рейса или дату" onChange={handleSearch}/>
       </form>
       <table className="table table-detail">

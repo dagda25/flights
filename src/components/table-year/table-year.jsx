@@ -150,7 +150,7 @@ const TableYear = (props) => {
 
 TableYear.propTypes = {
   data: PropTypes.array.isRequired,
-  year: PropTypes.number,
+  year: PropTypes.string,
 };
 
 const mapStateToProps = ({APP}) => ({
