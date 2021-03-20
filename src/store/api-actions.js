@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 export const fetchData = () => (dispatch, _getState) => (
-  axios.get(`https://flights-745.herokuapp.com/api`)
+  axios.get(`https://flights-back.herokuapp.com/api`)
   .then((response) => {
     dispatch(ActionCreator.getData(response.data));
   })

@@ -20,6 +20,33 @@ const YearPage = (props) => {
 
   const [localData, setLocalData] = React.useState(data);
 
+  const getTotalTime = (year, month) => {
+    let totalTimeFlight = 0;
+    let totalTimeBlock = 0;
+    let totalTimeNight = 0;
+    let totalTimeWork = 0;
+    let flightsCount = 0;
+
+    let formatter = new Intl.DateTimeFormat(`ru`, {
+      month: `long`
+    });
+
+    data.forEach((flight) => {
+      if ((month && ((new Date(Date.parse(flight.dateFlight))).getFullYear() === +year) && (formatter.format(new Date(Date.parse(flight.dateFlight))) === month)) ||
+      (!month && new Date(Date.parse(flight.dateFlight)).getFullYear() === +year)) {
+        totalTimeFlight += flight.timeFlight;
+        totalTimeBlock += flight.timeBlock;
+        totalTimeNight += flight.timeNight;
+        totalTimeWork += flight.timeWork;
+        flightsCount++;
+      }
+    });
+
+    return [totalTimeFlight, totalTimeBlock, totalTimeNight, totalTimeWork, flightsCount];
+  };
+  const [totalTimeFlight, totalTimeBlock, totalTimeNight, totalTimeWork, flightsCount] = getTotalTime(year, month);
+
+
   const getTableData = (flight) => {
     let formatter = new Intl.DateTimeFormat(`ru`, {
       month: `long`
@@ -71,10 +98,26 @@ const YearPage = (props) => {
           <h2 className="title">Статистика за {month} {year} года</h2> :
           <h2 className="title">Статистика за {year} год</h2>
       }
+      <table className="table table-main">
+        <tbody>
+          <tr className="table-header">
+            <th>Время налёта</th>
+            <th>Полётное время</th>
+            <th>Ночное лётное время</th>
+            <th>Рабочее время</th>
+          </tr>
+          <tr className="">
+            <th>{totalTimeFlight}</th>
+            <th>{totalTimeBlock}</th>
+            <th>{totalTimeNight}</th>
+            <th>{totalTimeWork}</th>
+          </tr>
+        </tbody>
+      </table>
+      <p>Всего рейсов: {flightsCount}</p>
       <form>
         <input type="text" className="table-search" placeholder="Введите номер рейса или дату" onChange={handleSearch}/>
       </form>
-      <p>Найдено {localData.length} рейс(ов)</p>
       <table className="table table-detail">
         <thead>
           <tr className="table-header">

@@ -95,7 +95,7 @@ body {
 .table-search {
   width: 300px;
   height: 40px;
-  margin: 0 0 20px;
+  margin: 20px 0 20px;
   padding-left: 5px;
   border: 1px solid black;
   border-radius: 4px;
@@ -198,6 +198,8 @@ tr:nth-child(2n + 1) {
   }
 
   .table td, .table th {
+    height: 30px;
     padding: 2px;
+    font-size: 0.8rem;
   }
 }
