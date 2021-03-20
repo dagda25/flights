@@ -3,12 +3,20 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import TableYear from "../table-year/table-year";
 import ChartSection from "../chart-section/chart-section";
-
+import Loader from "react-loader-spinner";
 
 const Table = (props) => {
   const {data} = props;
+
   if (!data || !data.length) {
-    return false;
+    return <Loader
+      type="Circles"
+      color="#00BFFF"
+      height={100}
+      width={100}
+      timeout={3000}
+      style={{marginLeft: `calc(50% - 50px)`, marginTop: `10%`}}
+    />;
   }
 
 
